@@ -29,6 +29,8 @@ def delete(messageId):
         'messageId': messageId
     }
 
+    # print(f'request.remote_addr: {request.remote_addr} - socket: {getLocalIP()}')
+
     if 'userId' in session:
         userId = session['userId']
 
@@ -66,6 +68,7 @@ def delete(messageId):
                 return redirect('/')
             else:
                 messageModel.Message.deleteLogically(data)
+                # messageModel.Message.deleteFunctional(data)
                 flash(f'Message with id {messageId} was deleted', 'delete_success')
                 return redirect('/dashboard')
         else:

@@ -91,6 +91,11 @@ class Message:
         query = "UPDATE messages SET isDeleted = 1 WHERE messages.id = %(messageId)s;"
         return connectToMySQL('private_wall_schema').query_db(query, data)
 
+    @classmethod
+    def deleteFunctional(cls, data):
+        query = "DELETE FROM messages WHERE messages.id = %(messageId)s;"
+        return connectToMySQL('private_wall_schema').query_db(query, data)
+
     @staticmethod
     def ago(input_date):
         total_seconds = abs((input_date - datetime.now()).total_seconds())
